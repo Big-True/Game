@@ -31,9 +31,9 @@ def newgame():
     else:
         map = list([[-1 if n > (600/size/2) else int(((m+n*(800/size)) % 40)/2) +
                      1 for m in range(int(800/size))] for n in range(int(600/size))])
-    for a in range(int(100000/size)):
-        i = [random.randint(0, (600/size)-1), random.randint(0, (800/size)-1)]
-        j = [random.randint(0, (600/size)-1), random.randint(0, (800/size)-1)]
+    for a in range(pow(int(1000/size),2)):
+        i = [random.randint(0, int(600/size)-1), random.randint(0, int(800/size)-1)]
+        j = [random.randint(0, int(600/size)-1), random.randint(0, int(800/size)-1)]
         map[i[0]][i[1]], map[j[0]][j[1]] = map[j[0]][j[1]], map[i[0]][i[1]]
 
 
@@ -109,5 +109,8 @@ while True:
             check(int(x/size), int(y/size))
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
+                newgame()
+            if event.key == pygame.K_n:
+                resize()
                 newgame()
     pygame.display.flip()
